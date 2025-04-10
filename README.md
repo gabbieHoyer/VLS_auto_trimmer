@@ -202,4 +202,11 @@ The `config.yaml` file in the `config/` directory controls the behavior of the p
 - **Model Improvements**: Fine-tune models for better accuracy in procedural frame classification and face detection.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. (placeholder)
+
+## Author & Contact
+- **Author**: Gabrielle Hoyer
+- **Email**: [gabbie.hoyer@ucsf.edu](mailto:gabbie.hoyer@ucsf.edu)
+- **Email 2**: [gabrielle_hoyer@berkeley.edu](mailto:gabrielle_hoyer@berkeley.edu)
+
+For questions, suggestions, or collaboration opportunities, feel free to reach out via email.
