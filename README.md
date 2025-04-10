@@ -94,7 +94,7 @@ Implements the procedural frame classification pipeline to identify and trim non
 #### `src/utils/`
 Contains utility modules for shared functionality across the project.
 
-- **`config_loader.py`**: Loads and processes configuration files (config.yaml), resolving relative paths to absolute paths for consistency.
+- **`config_loader.py`**: Loads and processes configuration files (`config.yaml`), resolving relative paths to absolute paths for consistency.
 - **`gpu_setup.py`**: Sets up GPU/CPU environments and handles distributed training/inference.
 - **`losses.py`**: Defines custom loss functions for training models.
 - **`metrics.py`**: Defines evaluation metrics for model performance.
@@ -123,89 +123,83 @@ Integrates Weights & Biases (W&B) for experiment tracking and visualization (opt
    pip install -r requirements.txt
     ```
     Ensure you have the following key dependencies:
-    - torch and torchvision for model training and inference.
-    - gradio for the UI (ui_app.py).
-    - opencv-python (cv2) for video processing.
-    - pandas for handling CSV data.
-    - nuitka (optional) for packaging the UI app.
+    - `torch` and `torchvision` for model training and inference.
+    - `gradio` for the UI (ui_app.py).
+    - `opencv-python` (`cv2`) for video processing.
+    - `pandas` for handling CSV data.
+    - `nuitka` (optional) for packaging the UI app.
 
 4. **Prepare Configuration:**:
    - Copy the example configuration file:
    ```bash
    cp config/config.yaml.example config/config.yaml
     ```
-    - Edit config.yaml to specify paths (e.g., output_base_dir, dataset_dir, weights_path) and other parameters.
+    - Edit `config.yaml` to specify paths (e.g., `output_base_dir`, `dataset_dir`, `weights_path`) and other parameters.
 
 5. **Download Pre-trained Models** (Optional):
-    - Place pre-trained weights for procedural frame classification and face detection in the appropriate directories (e.g., /data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outputs/checkpoints/).
-
-
------------------------------------------------------------
------------------------------------------------------------
+    - Place pre-trained weights for procedural frame classification and face detection in the appropriate directories (e.g., `/path/to/VLS_auto_trimmer/outputs/checkpoints/`).
 
 ## Usage
-Command-Line Pipeline
-To run the full pipeline (preprocessing, training, inference, and handling failed inference) for procedural frame classification:
 
-bash
+### Command-Line Pipeline
+To run the full pipeline (preprocessing, training, inference, and handling failed inference) for procedural frame classification:
+```bash
 python -m src.procedural_frame_classification.run_pipeline --config_file config.yaml
+```
 
 To trim a single video using procedural frame classification:
-
-bash
+```bash
 python -m src.app.auto_trim_video --input_path /path/to/video.mp4 --output_dir trimmed_videos
+```
 
 To trim a single video with a timestamp in the output file name:
-
-bash
+```bash
 python -m src.app.auto_trim_video --input_path /path/to/video.mp4 --output_dir trimmed_videos --add_timestamp
+```
 
-User Interface
+### User Interface
 To launch the Gradio-based UI for interactive video trimming:
-
-bash
+```bash
 python -m src.app.ui_app
+```
 
-Select video files or a folder.
-Specify the output directory.
-Optionally check "Add Timestamp to Output File Names" to append a timestamp to the output files.
-Click "Start Processing" to trim the videos.
+- Select video files or a folder.
+- Specify the output directory.
+- Optionally check "Add Timestamp to Output File Names" to append a timestamp to the output files.
+- Click "Start Processing" to trim the videos.
 
 To package the UI app for distribution:
-
-bash
+```bash
 nuitka --standalone --include-package=src.app --include-package=src.utils --output-dir=dist src/app/ui_app.py
+```
 
-Face Detection and Blurring
+### Face Detection and Blurring
 To train the face detection model:
-
-bash
+```bash
 python -m src.face_detection.train_face_detection --config_file config.yaml
+```
 
 To run inference for face detection and apply blurring:
-
-bash
+```bash
 python -m src.face_detection.infer_face --config_file config.yaml
+```
 
-Configuration
-The config.yaml file in the config/ directory controls the behavior of the pipelines. Key sections include:
+## Configuration
+The `config.yaml` file in the `config/` directory controls the behavior of the pipelines. Key sections include:
 
-paths: Defines directories for data, outputs, and weights.
-output_base_dir: Base directory for outputs (e.g., /data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outputs/).
-dataset_dir: Directory containing the dataset.
-trimmed_vid_dir: Directory for trimmed videos.
-inference: Settings for inference (e.g., weights_path, batch_size).
-auto_trim: Settings for video trimming (e.g., threshold, confidence_threshold).
-pipeline: Settings for the full pipeline (e.g., log_file).
+- **`paths`**: Defines directories for data, outputs, and weights.
+  - `output_base_dir`: Base directory for outputs (e.g., /data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outputs/).
+  - `dataset_dir`: Directory containing the dataset.
+  - `trimmed_vid_dir`: Directory for trimmed videos.
+- **`inference`**: Settings for inference (e.g., `weights_path`, `batch_size`).
+- **`auto_trim`**: Settings for video trimming (e.g., `threshold`, `confidence_threshold`).
+- **`pipeline`**: Settings for the full pipeline (e.g., `log_file`).
 
-Future Work
-Integrated Pipeline: Combine procedural frame classification and face detection/blurring into a single run_pipeline.py script.
-Enhanced UI: Add support for face detection/blurring in the UI, with options to toggle blurring and preview results.
-Performance Optimization: Optimize frame processing for faster inference, especially for large video datasets.
-Model Improvements: Fine-tune models for better accuracy in procedural frame classification and face detection.
+## Future Work
+- **Integrated Pipeline**: Combine procedural frame classification and face detection/blurring into a single `run_pipeline.py` script.
+- **Enhanced UI**: Add support for face detection/blurring in the UI, with options to toggle blurring and preview results.
+- **Performance Optimization**: Optimize frame processing for faster inference, especially for large video datasets.
+- **Model Improvements**: Fine-tune models for better accuracy in procedural frame classification and face detection.
 
-Contributing
-Contributions are welcome! Please submit a pull request or open an issue to discuss improvements or bug fixes.
-
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
