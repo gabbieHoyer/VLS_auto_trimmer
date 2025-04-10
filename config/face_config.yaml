@@ -1,0 +1,54 @@
+
+paths:
+  new_data_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/practice/"  # Directory containing new videos (procedural/ and nonprocedural/)
+
+  temp_frames_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/temp_frames/"  # Temporary directory for extracted frames
+
+  dataset_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/splits/"  # Existing dataset directory
+
+  failed_inference_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/failed_inference/"  # Directory for failed inference videos
+
+  output_base_dir: "/data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outputs/face_videos/"  # Base directory for run folders
+
+# Frame extraction settings
+frame_extraction:
+  frame_interval: 10  # Extract every nth frame
+
+# Split settings
+split_ratios:
+  # train: 1.0
+  # val: 0.0
+  # test: 0.0
+  train: 0.7
+  val: 0.15
+  test: 0.15
+
+# Pipeline settings
+pipeline:
+  dry_run: false  # Set to true for testing without moving files
+  log_file: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/pipeline.log"  # Path to log file for pipeline activity
+
+# Training settings
+training:
+  epochs: 1 #100 #50 #20
+  batch_size: 32
+  learning_rate: 0.0001  #0.001 #0.0001  #0.001
+  num_workers: 4
+  early_stopping:
+    patience: 5 #15 #5
+    min_delta: 0.001
+
+# Add to the top level
+# model:
+#   type: "mobilefacenet"  # Options: "mobilefacenet", "yolotinynet", "efficientfacenet"
+#   num_anchors: 3
+
+model:
+  type: "mobilefacenet"  #"efficientfacenet"  #
+  num_anchors: 9  # Updated from 3 to 9  # This ensures the cls_head and loc_head in each model output the correct number of predictions (num_anchors * 2 for classification, num_anchors * 4 for localization).
+
+inference:
+  weights_path: null  # Set to a path like "checkpoints/face_detection/best_model.pt" if desired
+  inference_output_dir: "../inference_outputs/face_det/"
+  batch_size: 32
+  num_workers: 4

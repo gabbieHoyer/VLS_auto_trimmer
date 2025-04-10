@@ -1,0 +1,72 @@
+# Directory paths
+paths:
+  new_data_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/" #practice/"  # Directory containing new videos (procedural/ and nonprocedural/)
+
+  temp_frames_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/temp_frames/"  # Temporary directory for extracted frames
+
+  dataset_dir: "/data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/data/"  # Existing dataset directory
+
+  failed_inference_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/failed_inference/"  # Directory for failed inference videos
+
+  output_base_dir: "/data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outputs/"  # Base directory for run folders
+
+  trimmed_vid_dir: "../inference_outputs/trimmed_video/"
+
+# Frame extraction settings
+frame_extraction:
+  frame_interval: 10  # Extract every nth frame
+
+# Split settings
+split_ratios:
+  train: 0.7  #1.0
+  val: 0.15   #0.0
+  test: 0.15  #0.0
+
+# Pipeline settings
+pipeline:
+  dry_run: true #false  # Set to true for testing without moving files
+  log_file: "/data/mskscratch/users/ghoyer/Precision_Air/0403/pipeline1.log"  # Path to log file for pipeline activity
+
+# Training settings
+training:
+  epochs: 1 #50  # Maximum number of epochs
+  learning_rate: 1e-4  # Initial learning rate
+  early_stopping:
+    patience: 5
+    min_delta: 0.001
+    monitor: "val_f1"  # Use macro-averaged F1-score for early stopping
+  lr_scheduler:
+    factor: 0.1  # Reduce learning rate by this factor
+    patience: 3  # Number of epochs to wait before reducing LR
+    min_lr: 1e-6  # Minimum learning rate
+
+inference:
+  batch_size: 32
+  num_workers: 4
+  weights_path: "checkpoints/frame_classification/best_model.pt"  # Relative to output_base_dir or absolute
+  inference_output_dir: "../inference_outputs/frame_class/"  # New: Independent output dir for inference
+  #inference_output_dir: "/data/mskscratch/users/ghoyer/Precision_Air/temp_output/inference_temp/"
+  transforms:
+    resize: 256
+    crop: 224
+
+scripts:
+  train_script: "train_frame_classification"
+  inference_script: "infer_frame"
+
+# config.yaml (relevant section)
+auto_trim:
+  input_path: "/data/mskscratch/users/ghoyer/Precision_Air/temp_output/raw_videos/20200316-113145.avi" #20200329-051346.avi"
+  # input_path: null  # Path to a video file or folder (e.g., "/path/to/video.mp4" or "/path/to/videos/")
+  csv_path: null    # Path to a CSV file (e.g., "/path/to/videos.csv")
+  threshold: 5
+  max_rows: null
+  confidence_threshold: 0.5
+  smoothing_window: 5
+
+
+# paths:
+#   output_base_dir: "../outputs"
+#   dataset_dir: "../data/frames"
+# pipeline:
+#   log_file: "../logs/inference.log"
