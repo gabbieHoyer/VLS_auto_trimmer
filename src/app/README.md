@@ -21,12 +21,9 @@ This directory holds the automatic trimming script, the interactive UI, and manu
 
 ---
 
-## Installation
+## Setup
 
-Ensure Python 3.8+ and install dependencies:
-```bash
-pip install -r requirements.txt
-```
+See the main [README.md](../../README.md) for installation instructions, including Conda and pip options to set up the project dependencies.
 
 ## Configuration
 

@@ -42,10 +42,26 @@ For detailed instructions and examples, see the README in each major subfolder:
 
 1. **Clone & install**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/gabbieHoyer/VLS_auto_trimmer.git
    cd VLS_auto_trimmer
-   pip install -r requirements.txt
    ```
+  Install dependencies (choose one option):
+  
+  **Option 1: Using Conda (recommended for cross-platform compatibility and GPU support)**
+  Install Miniconda if not already installed, then:
+  ```bash
+  conda env create -f environment.yml
+  conda activate my_project_env
+  ```
+
+  **Option 2: Using pip and a virtual environment**
+  Ensure Python 3.9+ is installed, then:
+  ```bash
+  python -m venv venv
+  source venv/bin/activate  # On Windows: venv\Scripts\activate
+  pip install -r requirements.txt
+  ```
+
 2. **Prepare configuration**:
    ```bash
    cp config/config.yaml.example config/config.yaml

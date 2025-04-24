@@ -30,12 +30,10 @@ This directory implements the face/person detection and blurring pipeline for VL
   - `blurred_face_detect.py` (blur regions)
   - `predict_and_annotate_video_with_classification.py` (dynamic threshold + auto-trim assisted)
 
-## Installation
+## Setup
 
-Ensure Python 3.8+ and install project dependencies:
-```bash
-pip install -r requirements.txt
-```
+See the main [README.md](../../README.md) for installation instructions, including Conda and pip options to set up the project dependencies.
+
 Key packages:
 - `torch`, `torchvision`, `torch.distributed`
 - `ultralytics` (YOLOv8)

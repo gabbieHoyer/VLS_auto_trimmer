@@ -87,13 +87,9 @@ Utilities (in development) for human-in-the-loop dataset QC, annotation consiste
 
 ---
 
-## Installation
+## Setup
 
-Install project requirements if you haven’t already:
-
-```bash
-pip install -r requirements.txt
-```
+See the main [README.md](../../README.md) for installation instructions, including Conda and pip options to set up the project dependencies.
 
 ---
 

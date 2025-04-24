@@ -19,12 +19,10 @@ This directory implements the procedural frame classification pipeline: training
 - **`run_pipeline.py`**
   Orchestrates data preprocessing, model training, inference, and (in future) failed‑inference handling via subprocess calls.
 
-## Installation
+## Setup
 
-Ensure you have Python 3.8+ and install project requirements:
-```bash
-pip install -r requirements.txt
-```
+See the main [README.md](../../README.md) for installation instructions, including Conda and pip options to set up the project dependencies.
+
 Key dependencies:
 - `torch`, `torchvision`, `torch.distributed`
 - `pandas`, `numpy`, `scikit-learn`
