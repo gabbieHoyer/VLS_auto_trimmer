@@ -16,9 +16,6 @@ frame_extraction:
 
 # Split settings
 split_ratios:
-  # train: 1.0
-  # val: 0.0
-  # test: 0.0
   train: 0.7
   val: 0.3
   test: 0.0 #0.15

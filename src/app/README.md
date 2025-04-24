@@ -6,18 +6,64 @@ This directory holds the automatic trimming script, the interactive UI, and manu
 
 - **Automatic Trimming Script**  
   `auto_trim_video.py`  
-  Uses a ResNet-18 model to detect procedural frames, smooth predictions, and trim videos with optional timestamping.
+  Uses a ResNet-18 model to detect procedural frames, smooth predictions, and trim videos with optional timestamping, batching via CSV, and app-mode logging.
 
 - **Trim + Detect Pipeline**  
   `auto_trim_and_detect.py`  
-  First trims via the ResNet-18 classifier, then runs a YOLO model to detect faces/persons, blurs or overlays bounding boxes, and saves a final video.
+  First trims via the ResNet-18 classifier, then runs a YOLO model to detect faces/persons, applies blurring or overlays bounding boxes, and saves final videos.
 
 - **Interactive UI**  
   `ui_app.py`  
-  Launches a Gradio app for uploading videos, setting trimming options, and running the automatic pipeline.
+  Launches a Gradio app for uploading videos, configuring trimming and detection options, and running the full pipeline.
 
 - **Manual Tools**  
   In `manual_tools/`, scripts for frame-level trimming and face/person blurring.
+
+---
+
+## Installation
+
+Ensure Python 3.8+ and install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Configuration
+
+All scripts read from a combined `config_trim_detect.yaml` (or override via CLI flags).
+
+Example `config_trim_detect.yaml`:
+```yaml
+paths:
+  output_base_dir: "/data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outputs"
+  trimmed_vid_dir: "/data/mskscratch/users/ghoyer/Precision_Air/temp_output/trimmed_videos"
+
+inference:
+  classification_weights_path: "run_20250417_015644/checkpoints/best_model.pt"
+  yolo_weights_path: "face-detection-yolov8/yolov8_run_20250414_225903/weights/best.pt"
+
+auto_trim:
+  threshold: 5
+  confidence_threshold: 0.7
+  smoothing_window: 10
+  csv_path: "/data/mskscratch/users/ghoyer/Precision_Air/air_loc_0308.csv"
+
+yolo:
+  conf_adjust_range: [0.3, 0.9]
+  blur_only: False
+  blur_kernel: [51, 51]
+  target_classes: null
+
+pipeline:
+  log_file: "logs/pipeline.log"
+```
+
+- **`paths.output_base_dir`**: root for all outputs
+- **`paths.trimmed_vid_dir`**: where trimmed videos go
+- **`inference.*_weights_path`**: paths to classifier & YOLO checkpoints
+- **`auto_trim`**: trimming parameters
+- **`yolo`**: detection/blurring parameters
+- **`pipeline.log_file`**: log filepath
 
 ---
 
@@ -27,8 +73,9 @@ This directory holds the automatic trimming script, the interactive UI, and manu
 
 ```bash
 python -m src.app.auto_trim_video \
-  --input_path /path/to/video.mp4 \
-  --output_dir /path/to/output \
+  --config_file config_trim_detect.yaml \
+  [--input_path /path/to/video_or_folder] \
+  [--output_dir /path/to/output] \
   [--threshold 5] \
   [--confidence_threshold 0.5] \
   [--smoothing_window 5] \
@@ -37,16 +84,7 @@ python -m src.app.auto_trim_video \
   [--csv_path /path/to/videos.csv] \
   [--max_rows 10]
 ```
-
-- `--input_path` : single video file or folder of videos
-- `--csv_path` : CSV with a `Video_path` column
-- `--output_dir` : where trimmed videos are saved
-- `--threshold` : frames of padding (before/after detection), default 5
-- `--confidence_threshold` : min probability for procedural frame, default 0.5
-- `--smoothing_window` : window size for smoothing, default 5
-- `--add_timestamp` : append timestamp to filename
-- `--app_mode` : enable app-mode logging and embedded model
-- `--max_rows` : limit rows when using `--csv_path`
+- Override any config in CLI if needed.
 
 To trim a single video using procedural frame classification:
 ```bash
@@ -87,7 +125,7 @@ python -m src.app.auto_trim_and_detect \
 
 ### 3. Interactive Interface
 ```bash
-python -m src.app.ui_app
+python -m src.app.ui_app --config_file config_trim_detect.yaml
 ```
 1. Select video files or a folder
 2. Choose output directory
