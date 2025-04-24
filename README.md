@@ -45,22 +45,22 @@ For detailed instructions and examples, see the README in each major subfolder:
    git clone https://github.com/gabbieHoyer/VLS_auto_trimmer.git
    cd VLS_auto_trimmer
    ```
-  Install dependencies (choose one option):
-  
-  **Option 1: Using Conda (recommended for cross-platform compatibility and GPU support)**
-  Install Miniconda if not already installed, then:
-  ```bash
-  conda env create -f environment.yml
-  conda activate my_project_env
-  ```
+    Install dependencies (choose one option):
 
-  **Option 2: Using pip and a virtual environment**
-  Ensure Python 3.9+ is installed, then:
-  ```bash
-  python -m venv venv
-  source venv/bin/activate  # On Windows: venv\Scripts\activate
-  pip install -r requirements.txt
-  ```
+    **Option 1: Using Conda (recommended for cross-platform compatibility and GPU support)**
+    Install Miniconda if not already installed, then:
+    ```bash
+    conda env create -f environment.yml
+    conda activate my_project_env
+    ```
+
+    **Option 2: Using pip and a virtual environment**
+    Ensure Python 3.9+ is installed, then:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    pip install -r requirements.txt
+    ```
 
 2. **Prepare configuration**:
    ```bash
