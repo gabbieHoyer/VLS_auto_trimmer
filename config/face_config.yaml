@@ -4,7 +4,7 @@ paths:
 
   temp_frames_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/temp_frames/"  # Temporary directory for extracted frames
 
-  dataset_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/splits/"  # Existing dataset directory
+  dataset_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_part4_yolo" #"/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/splits/"  # Existing dataset directory
 
   failed_inference_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/failed_inference/"  # Directory for failed inference videos
 
@@ -20,8 +20,8 @@ split_ratios:
   # val: 0.0
   # test: 0.0
   train: 0.7
-  val: 0.15
-  test: 0.15
+  val: 0.3
+  test: 0.0 #0.15
 
 # Pipeline settings
 pipeline:

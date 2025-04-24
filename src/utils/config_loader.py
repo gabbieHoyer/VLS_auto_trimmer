@@ -64,6 +64,14 @@ def load_config(config_path="config.yaml"):
     
     return config
 
+def load_config_lite(config_path="config.yaml"):
+    """Load configuration from a YAML file and convert scientific notation strings to floats."""
+    with open(config_path, "r") as f:
+        config = yaml.safe_load(f)
+    # Recursively convert scientific notation strings to floats
+    config = convert_to_float(config)
+    return config
+
 def setup_logging(log_file, logger):
     """Set up logging to write to the specified log file."""
     Path(log_file).parent.mkdir(parents=True, exist_ok=True)  # Ensure log directory exists

@@ -1,0 +1,30 @@
+paths:
+  output_base_dir: "../face-detection-yolov8/refined_version3" #runs"
+  # dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolo_refined"
+  # dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolo_refined2"
+  # dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolo_refined3"
+  # dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolo_refined4"
+  # dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolo_refined5"
+  # dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolo_refined6"
+  dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolo_refined7"
+  # dataset_yolov8_dir: "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/dataset_yolov8"
+
+  log_file: "../face-detection-yolov8/logs/yolov8_train.log"
+
+training:
+  epochs: 200 #100 #300
+  batch_size: 16
+  learning_rate: 0.01
+  num_workers: 4
+  early_stopping:
+    patience: 10
+    min_delta: 0.001
+
+model:
+  type: /data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/work_dir/model_weights/yolov8n.pt #yolov8n.pt
+  imgsz: 1280 #[1280, 720] #640
+  rect: true
+  data_yaml: data.yaml
+
+inference:
+  detection_weights_path: null

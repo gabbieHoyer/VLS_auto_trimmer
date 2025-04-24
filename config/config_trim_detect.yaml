@@ -1,0 +1,20 @@
+paths:
+  output_base_dir: "/data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outputs"
+  trimmed_vid_dir: "/data/mskscratch/users/ghoyer/Precision_Air/temp_output/trimmed_videos"
+inference:
+  classification_weights_path: "run_20250417_015644/checkpoints/best_model.pt"
+  yolo_weights_path: "face-detection-yolov8/yolov8_run_20250414_225903/weights/best.pt"
+auto_trim:
+  threshold: 5
+  confidence_threshold: 0.7
+  smoothing_window: 10
+  csv_path: "/data/mskscratch/users/ghoyer/Precision_Air/air_loc_0308.csv"
+yolo:
+  conf_adjust_range: [0.3, 0.9]  #[0.3, 0.99]
+  blur_only: False
+  blur_kernel: [51, 51]
+  target_classes: null
+pipeline:
+  log_file: "logs/pipeline.log"
+
+

@@ -29,7 +29,7 @@ pipeline:
 
 # Training settings
 training:
-  epochs: 1 #50  # Maximum number of epochs
+  epochs: 50  # Maximum number of epochs
   learning_rate: 1e-4  # Initial learning rate
   early_stopping:
     patience: 5

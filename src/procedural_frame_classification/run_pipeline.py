@@ -10,7 +10,12 @@ def run_pipeline(config_file):
     """Run the entire pipeline: process new data, retrain model, run inference, and handle failed inference."""
     # Common config file argument to pass to all subprocesses
     config_arg = ["--config_file", config_file]
-    config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config", config_file)
+    # config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config", config_file)
+    config_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),  # Up three levels to root/
+        "config",
+        args.config_file
+    )
     print(f"Config path: {config_path}")
     config = load_config(config_path)
 

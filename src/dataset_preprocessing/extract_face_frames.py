@@ -79,19 +79,35 @@ if __name__ == "__main__":
                         help="Frames per second to extract (default: video's native FPS, i.e., all frames)")
     parser.add_argument("--quality", type=int, default=95, 
                         help="JPEG quality (0-100, default: 95)")
-    parser.add_argument("--config", default="face_config.yaml", help="Path to config file")
+    parser.add_argument("--config_file", default="face_config.yaml", help="Path to config file")
     args = parser.parse_args()
+    config_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),  # up one additional level
+        "config",
+        args.config_file
+    )
 
-    config = load_config(args.config)
-    setup_logging(config["pipeline"]["log_file"])
+    try:
+        # Load config and set up logging
+        config = load_config(config_path)
+        logger = setup_logging(config["pipeline"]["log_file"], logger=logging.getLogger(__name__),)
 
-    extract_frames(args.input_dir, args.output_dir, extract_fps=args.extract_fps, 
-                   quality=args.quality, class_name="face")
+        extract_frames(args.input_dir, args.output_dir, extract_fps=args.extract_fps, 
+                    quality=args.quality, class_name="face")
+        logger.info("New data processing complete!")
+        print("\nNew data processing complete!")
 
+    except Exception as e:
+        if logger is not None:
+            logger.error(f"An error occurred: {e}")
+        else:
+            print(f"An error occurred before logger was set up: {e}")
 
+# python -m src.dataset_preprocessing.process_new_data --config_file config.yaml
+# python -m src.dataset_preprocessing.extract_face_frames --input_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/videos_part4/face_trimmed_videos" --output_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_images_part4" --quality 100
 
+# ---------------------------------- #
 # Default (All Frames at Native FPS):
-
 # python extract_face_frames.py --input_dir "path/to/face_videos" --output_dir "dataset_dir/train/face" --quality 100
 
 # 30 FPS video: Extracts all 30 frames per second.
@@ -100,17 +116,13 @@ if __name__ == "__main__":
 
 
 # Specify Lower FPS (Optional):
-
 # python extract_face_frames.py --input_dir "path/to/face_videos" --output_dir "dataset_dir/train/face" --extract_fps 10
-
 # Extracts 10 FPS, skipping frames as needed.
 
 
 # Combining Both Goals
 # To maximize frame extraction (all frames) and quality:
-
 # python extract_face_frames.py --input_dir "path/to/face_videos" --output_dir "dataset_dir/train/face" --quality 100
-
 # Result: Every frame is extracted (30 or 34 FPS depending on the video), saved as JPGs with maximum quality.
 
 
@@ -118,7 +130,6 @@ if __name__ == "__main__":
 # If you want zero quality loss (at the cost of larger files), replace JPG with PNG:
 
 # Modify the cv2.imwrite line to:
-
 # frame_filename = frame_filename.replace('.jpg', '.png')
 # cv2.imwrite(frame_filename, frame)
 
@@ -128,22 +139,17 @@ if __name__ == "__main__":
 
 # Extract All Frames (Maximum Density)
 # python extract_face_frames.py --input_dir "path/to/face_videos" --output_dir "dataset_dir/train/face"
-
 # This extracts every frame from each video, saved as high-quality JPGs (e.g., video1_frame000001.jpg).
 
 # Extract at a Specific FPS (e.g., 10 FPS)
 # python extract_face_frames.py --input_dir "path/to/face_videos" --output_dir "dataset_dir/train/face" --extract_fps 10
-
 # Extracts 10 frames per second, adjusting the interval based on the video’s FPS (e.g., if video FPS is 30, saves every 3rd frame).
 
 # Adjust Quality
 # python extract_face_frames.py --input_dir "path/to/face_videos" --output_dir "dataset_dir/train/face" --quality 100
-
 # Saves at maximum JPEG quality (100) for minimal compression loss.
 
 
 # python extract_face_frames.py --input_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/videos/face_trimmed_videos" --output_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_images" --quality 100
-
 # python extract_face_frames.py --input_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/videos_part2/face_trimmed_videos" --output_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_images_part2" --quality 100
-
 # python extract_face_frames.py --input_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/videos_part3/face_trimmed_videos" --output_dir "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_images_part3" --quality 100

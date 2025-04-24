@@ -61,3 +61,5 @@ if __name__ == "__main__":
 
     print(f"Running with image_dir={args.image_dir}, label_dir={args.label_dir}, dry_run={dry_run}")
     clean_unannotated_images(args.image_dir, args.label_dir, dry_run)
+
+# python -m src.dataset_preprocessing.iterative_quality_check.clean_unannotated_images

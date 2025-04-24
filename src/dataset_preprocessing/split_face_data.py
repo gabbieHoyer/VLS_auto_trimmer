@@ -218,24 +218,39 @@ Files moved to:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Split face images and annotations into train/val/test sets.")
-    parser.add_argument("--image_dir", default="/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_images_part3",
+    parser.add_argument("--image_dir", default="/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_images_part4",
                         help="Directory containing face images")
-    parser.add_argument("--label_dir", default="/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_labels_txt_part3",
+    parser.add_argument("--label_dir", default="/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_labels_txt_part4",
                         help="Directory containing annotation files")
-    parser.add_argument("--config", default="face_config.yaml", help="Path to config file")
+    parser.add_argument("--config_file", default="face_config.yaml", help="Path to config file")
     parser.add_argument("--dry_run", type=str, default=None, choices=["on", "off", None],
                         help="Dry run mode: 'on' to simulate, 'off' to copy, None to use config")
     args = parser.parse_args()
+    config_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),  # up one additional level
+        "config",
+        args.config_file
+    )
 
-    # Load config and set up logging
-    config = load_config(args.config)
-    setup_logging(config["pipeline"]["log_file"])
+    try:
+        # Load config and set up logging
+        config = load_config(config_path)
+        logger = setup_logging(config["pipeline"]["log_file"], logger=logging.getLogger(__name__),)
 
-    # Extract settings from config
-    output_base_dir = config["paths"]["dataset_dir"]
-    split_ratios = config["split_ratios"]
-    dry_run = args.dry_run == "on" if args.dry_run is not None else config["pipeline"]["dry_run"]
+        # Extract settings from config
+        output_base_dir = config["paths"]["dataset_dir"]
+        split_ratios = config["split_ratios"]
+        dry_run = args.dry_run == "on" if args.dry_run is not None else config["pipeline"]["dry_run"]
 
-    print(f"Splitting face data from {args.image_dir} and {args.label_dir} into {output_base_dir} (dry_run={dry_run})")
-    split_face_data(args.image_dir, args.label_dir, output_base_dir, split_ratios, dry_run)
+        print(f"Splitting face data from {args.image_dir} and {args.label_dir} into {output_base_dir} (dry_run={dry_run})")
+        split_face_data(args.image_dir, args.label_dir, output_base_dir, split_ratios, dry_run)
+
+        logger.info("New data processing complete!")
+        print("\nNew data processing complete!")
+
+    except Exception as e:
+        if logger is not None:
+            logger.error(f"An error occurred: {e}")
+        else:
+            print(f"An error occurred before logger was set up: {e}")
 

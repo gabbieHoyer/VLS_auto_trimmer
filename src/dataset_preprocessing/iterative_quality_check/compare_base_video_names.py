@@ -94,3 +94,5 @@ if __name__ == "__main__":
 
     print(f"Comparing base video names between {face_images_dir} and splits in {splits_base_dir}")
     compare_base_video_names(face_images_dir, splits_base_dir)
+
+# python -m src.dataset_preprocessing.iterative_quality_check.compare_base_video_names

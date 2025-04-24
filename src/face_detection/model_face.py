@@ -220,24 +220,3 @@ class EfficientFaceNet(BaseFaceDetector):
 
 
 # ------------------------------------------------
-
-
-# def convert_to_yolo_format(bbox, img_width, img_height):
-#     x, y, w, h = bbox
-#     x_center = (x + w / 2) / img_width
-#     y_center = (y + h / 2) / img_height
-#     w_norm = w / img_width
-#     h_norm = h / img_height
-#     return [0, x_center, y_center, w_norm, h_norm]  # class_id=0 for faces
-
-
-# #data.yaml:
-# train: path/to/train/images
-# val: path/to/val/images
-# nc: 1  # Number of classes (1 for faces)
-# names: ['face']
-
-
-# from ultralytics import YOLO
-# model = YOLO("yolov8n.pt")  # Load a pretrained model
-# model.train(data="path/to/your_dataset.yaml", epochs=100, imgsz=112)  # Train on your dataset

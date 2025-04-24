@@ -348,3 +348,7 @@ if __name__ == "__main__":
 
 # python -m src.app.auto_trim_video --input_path /path/to/input_video.mp4 --output_dir trimmed_videos --add_timestamp
 # Output: trimmed_videos/input_video_20250410_143022.mp4
+
+
+# python src.app.auto_trim_video --csv_path /data/mskscratch/users/ghoyer/Precision_Air/air_loc_0308.csv --output_dir /data/mskscratch/users/ghoyer/Precision_Air/temp_output/trimmed_videos --threshold 5 --confidence_threshold 0.7 --smoothing_window 10 --max_rows 5
+# python src.app.auto_trim_video --input_path /data/mskscratch/users/ghoyer/Precision_Air/0403/auto_trim_attempt/before_trim/20201028-190433.avi --output_dir /data/mskscratch/users/ghoyer/Precision_Air/0403/auto_trim_attempt/after_trim/ --threshold 5 --confidence_threshold 0.7 --smoothing_window 10

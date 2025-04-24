@@ -108,3 +108,6 @@ if __name__ == "__main__":
 # python -m src.dataset_preprocessing.extract_frames --input_dir /custom/input --output_dir /custom/output --class_name custom_class --frame_interval 5 --config config.yaml
 # python -m src.dataset_preprocessing.extract_frames --input_dir /custom/input --class_name procedural --config config.yaml
 
+# python -m src.dataset_preprocessing.extract_frames --input_dir /data/mskscratch/users/ghoyer/Precision_Air/0403/04162025_round_classification_vids_raw --output_dir /data/mskscratch/users/ghoyer/Precision_Air/0403/04162025_round_classification_vids_raw/nonprocedural_frames --class_name nonprocedural --frame_interval 1 
+
+# python -m src.dataset_preprocessing.extract_frames --input_dir /data/mskscratch/users/ghoyer/Precision_Air/0403/04162025_round_classification_vids_raw --output_dir /data/mskscratch/users/ghoyer/Precision_Air/0403/04162025_round_classification_vids_raw/procedural_frames --class_name procedural --frame_interval 15

@@ -29,9 +29,19 @@ def convert_voc_to_txt(xml_dir, output_dir):
 
 if __name__ == "__main__":
     # Define input and output directories
-    xml_dir = "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_labels_part3"
-    output_dir = "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_labels_txt_part3"
+    xml_dir = "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_labels_part4"
+    output_dir = "/data/mskscratch/users/ghoyer/Precision_Air/0403/face_videos/frame_labels_txt_part4"
     
     print(f"Converting XML annotations from {xml_dir} to TXT files in {output_dir}")
     convert_voc_to_txt(xml_dir, output_dir)
     print("Conversion complete.")
+
+# python -m src.dataset_preprocessing.format_standardization.convert_script
+
+# Annotation Format
+# The annotations were originally in Pascal VOC XML format (output by LabelImg) with the label person.
+# The XML files were converted to .txt files using the script convert_voc_to_txt, which:
+# Reads each XML file.
+# Extracts bounding boxes for objects labeled as person.
+# Converts the bounding box format from [xmin, ymin, xmax, ymax] to [x_min, y_min, width, height].
+# Writes each bounding box to a .txt file, one per line, as space-separated values: x_min y_min width height.

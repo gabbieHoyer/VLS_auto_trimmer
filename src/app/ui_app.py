@@ -18,31 +18,6 @@ MODEL_PATH = "/data/mskscratch/users/ghoyer/Precision_Air/VLS_auto_trimmer/outpu
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 MODEL, TRANSFORM = load_model(MODEL_PATH, DEVICE, app_mode=True)
 
-# def trim_videos(input_files, input_folder, output_path, add_timestamp, progress=gr.Progress()):
-#     paths = []
-
-#     if input_files:
-#         paths.extend([file.name for file in input_files])
-
-#     if input_folder:
-#         paths.append(input_folder)
-
-#     if not paths:
-#         return "Please select video file(s) or a folder."
-
-#     os.makedirs(output_path, exist_ok=True)
-
-#     total_items = len(paths)
-#     for i, input_path in enumerate(paths):
-#         progress((i + 1) / total_items, desc=f"Processing {i + 1}/{total_items}: {os.path.basename(input_path)}")
-#         if os.path.isfile(input_path):
-#             process_single_video(input_path, output_path, MODEL, TRANSFORM, THRESHOLD, CONFIDENCE_THRESHOLD, SMOOTHING_WINDOW, app_mode=True, add_timestamp=add_timestamp)
-#         elif os.path.isdir(input_path):
-#             process_directory(input_path, output_path, MODEL, TRANSFORM, THRESHOLD, CONFIDENCE_THRESHOLD, SMOOTHING_WINDOW, app_mode=True, add_timestamp=add_timestamp)
-
-#     return f"✅ Processing completed! Output saved at: {output_path}"
-
-
 def trim_videos(input_files, input_folder, output_path, add_timestamp, progress=gr.Progress()):
     paths = []
     if input_files:

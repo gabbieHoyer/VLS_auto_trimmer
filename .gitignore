@@ -25,10 +25,14 @@ models/
 checkpoints/
 *.onnx
 wandb/
+runs/
+face-detection-yolov8/
+work_dir/
 
 # Directories you specified for exclusion (relative to the repository root)
 src/wandb/
 src/dev/
+src/face_detection/ultra/
 src/__pycache__/
 src/*.pyc
 src/*.pyo
