@@ -21,7 +21,7 @@ This directory implements the procedural frame classification pipeline: training
 
 ## Setup
 
-See the main [README.md](../../README.md) for installation instructions, including Conda and pip options to set up the project dependencies.
+See the main [README.md](../../README.md#quickstart) for installation instructions, including Conda and pip options to set up the project dependencies.
 
 Key dependencies:
 - `torch`, `torchvision`, `torch.distributed`

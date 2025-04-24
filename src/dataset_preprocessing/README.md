@@ -89,7 +89,7 @@ Utilities (in development) for human-in-the-loop dataset QC, annotation consiste
 
 ## Setup
 
-See the main [README.md](../../README.md) for installation instructions, including Conda and pip options to set up the project dependencies.
+See the main [README.md](../../README.md#quickstart) for installation instructions, including Conda and pip options to set up the project dependencies.
 
 ---
 

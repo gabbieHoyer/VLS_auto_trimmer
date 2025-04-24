@@ -23,7 +23,7 @@ This directory holds the automatic trimming script, the interactive UI, and manu
 
 ## Setup
 
-See the main [README.md](../../README.md) for installation instructions, including Conda and pip options to set up the project dependencies.
+See the main [README.md](../../README.md#quickstart) for installation instructions, including Conda and pip options to set up the project dependencies.
 
 ## Configuration
 
