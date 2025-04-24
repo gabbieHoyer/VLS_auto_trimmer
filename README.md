@@ -26,35 +26,7 @@ Main source code directory containing all the Python modules and scripts.
 #### `src/app/`
 Contains scripts for video trimming and the user interface.
 
-- **`auto_trim_video.py`**: Core script for trimming videos based on procedural frame classification. It can process individual videos, directories, or CSV files containing video paths. Supports both command-line and UI usage.
-
-  - **Key Features**:
-    - Classifies frames as procedural or non-procedural using a pre-trained ResNet18 model.
-    - Trims videos to retain only procedural frames with configurable padding (threshold).
-    - Supports smoothing of frame predictions to reduce noise.
-    - Optionally appends a timestamp to output file names for versioning.
-
-  - **Usage**:
-    ```bash
-    python -m src.app.auto_trim_video --input_path /path/to/video.mp4 --output_dir trimmed_videos
-    ```
-
-- **`ui_app.py`**: Gradio-based user interface for interactive video trimming.
-
-  - **Key Features**:
-    - Allows users to select video files or folders via a web interface.
-    - Provides options to specify output directories and toggle timestamp addition to output file names.
-    - Displays processing status and allows users to open the output folder.
-
-  - **Usage**:
-    ```bash
-    python -m src.app.ui_app
-    ```
-
-- **Packaging for Distribution**:
-    ```bash
-    nuitka --standalone --include-package=src.app --include-package=src.utils --output-dir=dist src/app/ui_app.py
-    ```
+For detailed usage examples, CLI flags and screenshots, see [src/app/README.md](src/app/README.md).
 
 #### `src/dataset_preprocessing/`
 Handles preprocessing of video data to prepare it for training and inference.
@@ -147,32 +119,6 @@ To run the full pipeline (preprocessing, training, inference, and handling faile
 python -m src.procedural_frame_classification.run_pipeline --config_file config.yaml
 ```
 
-To trim a single video using procedural frame classification:
-```bash
-python -m src.app.auto_trim_video --input_path /path/to/video.mp4 --output_dir trimmed_videos
-```
-
-To trim a single video with a timestamp in the output file name:
-```bash
-python -m src.app.auto_trim_video --input_path /path/to/video.mp4 --output_dir trimmed_videos --add_timestamp
-```
-
-### User Interface
-To launch the Gradio-based UI for interactive video trimming:
-```bash
-python -m src.app.ui_app
-```
-
-- Select video files or a folder.
-- Specify the output directory.
-- Optionally check "Add Timestamp to Output File Names" to append a timestamp to the output files.
-- Click "Start Processing" to trim the videos.
-
-To package the UI app for distribution:
-```bash
-nuitka --standalone --include-package=src.app --include-package=src.utils --output-dir=dist src/app/ui_app.py
-```
-
 ### Face Detection and Blurring
 To train the face detection model:
 ```bash
@@ -183,6 +129,10 @@ To run inference for face detection and apply blurring:
 ```bash
 python -m src.face_detection.infer_face --config_file config.yaml
 ```
+
+### User Interface
+For all trimming + blurring commands and options, see [src/app/README.md](src/app/README.md).
+
 
 ## Configuration
 The `config.yaml` file in the `config/` directory controls the behavior of the pipelines. Key sections include:
@@ -196,17 +146,28 @@ The `config.yaml` file in the `config/` directory controls the behavior of the p
 - **`pipeline`**: Settings for the full pipeline (e.g., `log_file`).
 
 ## Future Work
-- **Integrated Pipeline**: Combine procedural frame classification and face detection/blurring into a single `run_pipeline.py` script.
-- **Enhanced UI**: Add support for face detection/blurring in the UI, with options to toggle blurring and preview results.
 - **Performance Optimization**: Optimize frame processing for faster inference, especially for large video datasets.
 - **Model Improvements**: Fine-tune models for better accuracy in procedural frame classification and face detection.
 
 ## License
 This project is licensed under the MIT License. (placeholder)
 
-## Author & Contact
-- **Author**: Gabrielle Hoyer
-- **Email**: [gabbie.hoyer@ucsf.edu](mailto:gabbie.hoyer@ucsf.edu)
-- **Email 2**: [gabrielle_hoyer@berkeley.edu](mailto:gabrielle_hoyer@berkeley.edu)
+## Reference
+```bibtex
+@misc{hoyer2025VLSAutoTrimmer,
+  author       = {Hoyer, Gabrielle and Runnels, Sean},
+  title        = {VLSAutoTrimmer},
+  year         = {2025},
+  howpublished = {Computer software},
+  version      = {1.0.0},
+  note         = {Available at \url{https://github.com/gabbieHoyer/VLS_auto_trimmer}},
+}
+```
 
+## Contact
+- **Gabrielle Hoyer**  
+  - UCSF / UC Berkeley  
+  - [gabbie.hoyer@ucsf.edu](mailto:gabbie.hoyer@ucsf.edu)  
+  - [gabrielle_hoyer@berkeley.edu](mailto:gabrielle_hoyer@berkeley.edu)
+  
 For questions, suggestions, or collaboration opportunities, feel free to reach out via email.

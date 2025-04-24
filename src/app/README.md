@@ -48,6 +48,16 @@ python -m src.app.auto_trim_video \
 - `--app_mode` : enable app-mode logging and embedded model
 - `--max_rows` : limit rows when using `--csv_path`
 
+To trim a single video using procedural frame classification:
+```bash
+python -m src.app.auto_trim_video --input_path /path/to/video.mp4 --output_dir trimmed_videos
+```
+
+To trim a single video with a timestamp in the output file name:
+```bash
+python -m src.app.auto_trim_video --input_path /path/to/video.mp4 --output_dir trimmed_videos --add_timestamp
+```
+
 ### 2. Trim + Detect Pipeline
 ```bash
 python -m src.app.auto_trim_and_detect \
@@ -85,6 +95,7 @@ python -m src.app.ui_app
 4. Click Process to run automatic trimming
 
 ![Automatic Trim Interface](assets/auto_vid_trim_tool.png)
+*Automatic trimming UI.*
 
 ## Manual Tools
 Inside `src/app/manual_tools/`:
@@ -103,6 +114,7 @@ python -m src.app.manual_tools.video_trim_tool
 *Set start/end frames and export trimmed clip.*
 
 ![Manual Trim Tool](assets/manual_trim_tool.png)
+*Manual Trim Tool UI.*
 
 ### Blur Tool GUI
 ```bash
@@ -116,6 +128,7 @@ python -m src.app.manual_tools.video_blur_tool
 *Draw and preview blur regions before saving.*
 
 ![Manual Blur Tool](assets/manual_blur_tool.png)
+*Manual Blur Tool UI.*
 
 ## Packaging for Distribution
 ```bash

@@ -134,23 +134,6 @@ def main(config, args_weights_path, config_path):
         print(report)
         log_info("Classification Report:\n" + report)
 
-        # # Determine output directory based on whether a specific weights path was provided
-        # if is_specific_weights:
-        #     # Use inference_output_dir from config
-        #     inference_config = config.get("inference", {})
-        #     output_dir = inference_config.get("inference_output_dir", config["paths"]["output_base_dir"])
-        #     if not os.path.isabs(output_dir):
-        #         # Resolve relative to config file's parent directory
-        #         config_dir = os.path.dirname(config_path)
-        #         output_dir = os.path.join(config_dir, output_dir)
-        # else:
-        #     # Use the run directory from latest_run.txt
-        #     output_base_dir = config["paths"]["output_base_dir"]
-        #     latest_run_file = os.path.join(output_base_dir, "latest_run.txt")
-        #     with open(latest_run_file, "r") as f:
-        #         run_dir = f.read().strip()
-        #     output_dir = run_dir
-
         # Determine output directory based on whether a specific weights path was provided
         if is_specific_weights:
             inference_config = config.get("inference", {})
