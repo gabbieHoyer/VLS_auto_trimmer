@@ -145,10 +145,10 @@ Classification of intubation difficulty by Santiago and Sean, based on procedura
 - `2`: Moderately difficult access (successful, multiple reversals/redirections, moderate displacement, no trauma). Subclasses `2b`, `2c`, `2d` indicate specific challenges.
 - `3`: Severely difficult access (successful, multiple reversals, severe displacement, visible trauma). Subclasses `3b` & `3c` indicate specific severe challenges.
 - `4`: Impossible access (Unsuccessful placement of ETT into the trachea).
--- `4a`: Unable to pass tracheal access equipment into field of view of VL.
--- `4b`: Unable to reach the glottic opening with tracheal access equipment. 
--- `4c`: Unable to pass tip of tracheal access equipment through the glottic opening.
--- `4d`: Unable to pass tip of tracheal access equipment through subglottic trachea.
+    - `4a`: Unable to pass tracheal access equipment into field of view of VL.
+    - `4b`: Unable to reach the glottic opening with tracheal access equipment. 
+    - `4c`: Unable to pass tip of tracheal access equipment through the glottic opening.
+    - `4d`: Unable to pass tip of tracheal access equipment through subglottic trachea.
 
 - **`Santiago_Review` Unique values**: `1`, `2`, `2b`, `2c`, `2d`, `3`, `3b`, `4b`.
 

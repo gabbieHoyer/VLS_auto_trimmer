@@ -99,6 +99,10 @@ After setup and preprocessing, follow subfolder READMEs to:
 - Train/infer the **face/person detection** model and apply blurring.
 - Use the **interactive UI** for combined trimming & blurring.
 
+## Data Usage
+
+Details on the datasets used in this codebase—frame classification images, face detection annotations, and anonymized trimmed videos—are documented in [data/README.md](data/README.md).
+
 ## Future Work
 
 - **Performance Optimization**: Speed up frame and video processing for large datasets.
@@ -129,4 +133,3 @@ This project is licensed under the MIT License. (placeholder)
   - [gabrielle_hoyer@berkeley.edu](mailto:gabrielle_hoyer@berkeley.edu)
   
 For questions or collaboration, feel free to reach out via email.
-
