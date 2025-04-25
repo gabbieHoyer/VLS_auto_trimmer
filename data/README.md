@@ -110,7 +110,7 @@ for path in split_df['Processed_video_path']:
 The `video_splits_relative_paths.csv` contains 31 columns with metadata and annotations for original and processed videos. Below is a brief description of each column:
 
 ### Original Video Metadata
-- `Video_path`: Relative path to the original video file (e.g., Data_VL Videos for review (100)/20201029-170946.avi).
+- `Video_path`: Relative path to the original video file (e.g., `Data_ VL Videos for review (100)/20201029-170946.avi`).
 - `Duration_sec`: Duration of the original video in seconds.
 - `FPS`: Frames per second of the original video.
 - `Width`: Width of the original video in pixels.
@@ -118,7 +118,7 @@ The `video_splits_relative_paths.csv` contains 31 columns with metadata and anno
 - `Frame_Count`: Total number of frames in the original video.
 
 ### Processed Video Metadata
-- `Processed_video_path`: Relative path to the processed video file (e.g., clean_trimmed_videos/20201029-170946_anon.mp4).
+- `Processed_video_path`: Relative path to the processed video file (e.g., `clean_trimmed_videos/20201029-170946_anon.mp4`).
 - `Processed_Duration_sec`: Duration of the processed video in seconds.
 - `Processed_FPS`: Frames per second of the processed video.
 - `Processed_Width`: Width of the processed video in pixels.
@@ -135,8 +135,8 @@ These columns contain metrics evaluated by two annotators (Santiago and Sean) ba
 - `Sean_Total_time_of_tracheal_access`: Time (in seconds) taken by Sean to achieve tracheal access.
 - `Santiago_new_blood_erythema`: Presence or severity of blood or erythema (redness) observed by Santiago, in varied text formats.
 - `Sean_new_blood_erythema`: Presence or severity of blood or erythema observed by Sean, in varied text formats.
-- `Santiago_Best_CL_grade`: Best Cormack-Lehane grade (a laryngoscopy classification, typically 1–4, assessing glottic view) assigned by Santiago, possibly using Roman numerals (e.g., I, IIa).
-- `Sean_Best_CL_grade`: Best Cormack-Lehane grade assigned by Sean, possibly using mixed formats (e.g., 1, 2a).
+- `Santiago_Best_CL_grade`: Best Cormack-Lehane grade (a laryngoscopy classification, typically 1–4, assessing glottic view) assigned by Santiago, possibly using Roman numerals (e.g., `I`, `IIa`).
+- `Sean_Best_CL_grade`: Best Cormack-Lehane grade assigned by Sean, possibly using mixed formats (e.g., `1`, `2a`).
 
 **Overall Procedure Difficulty (Review Classifications)**
 Classification of intubation difficulty by Santiago and Sean, based on procedural success, equipment motion, anatomical displacement, and trauma. Informed by time metrics, CL grade, blood/erythema, and number of attempts. Classes:
@@ -154,7 +154,7 @@ Classification of intubation difficulty by Santiago and Sean, based on procedura
 
 - **`Sean_Review` Unique values**: `1`, `2`, `2b`, `2c`, `3`, `3b`, `3c`, `4b`, `x`.
 
-*value x (ETT check).*
+    *value x: (ETT check).*
 
 **Standardized and Numeric Annotations**
 These columns provide standardized (cleaned and unified) or numeric versions of the Santiago and Sean annotations for consistent analysis.
