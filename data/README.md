@@ -27,6 +27,11 @@ These datasets were generated and refined during development of the trimming and
 - Contains `.jpeg` images, YOLO-style `.txt` bounding box annotations, and visualizations.
 - Includes `data.yaml` file for YOLOv8. Paths inside must be updated after extraction.
 - Used to train a YOLO model for face and person detection to support anonymization.
+- **Classes for Annotations**: Annotations were made using the following classes to identify and anonymize specific elements in the videos:
+    - `person`: General detection of individuals.
+    - `face`: Specific detection of faces for obscuring identifiable features.
+    - `patient`: Detection of the patient undergoing the procedure.
+    - `clinician`: Detection of the clinician performing the procedure.
 
 **1.3 anonymized_trimmed_videos.zip**
 - Structure: `clean_trimmed_videos/{.mp4}`
@@ -181,7 +186,7 @@ These columns provide standardized (cleaned and unified) or numeric versions of 
 - **YOLO Data Paths**: Update the `data.yaml` to point to your local directory for training or evaluation.
 - **Replicating Model Training**: Only required if you wish to recreate the model training process; otherwise, the final video outputs can be used directly.
 
----
+
 
 
 
