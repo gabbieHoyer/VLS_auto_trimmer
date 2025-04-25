@@ -18,7 +18,9 @@ logs/
 *.log
 
 # Machine learning outputs and model files (avoid including heavy files)
-data/
+data/test/
+data/train/
+data/val
 outputs/
 inference_outputs/
 models/
